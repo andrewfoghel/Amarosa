@@ -1,0 +1,6 @@
+framework module Pods_Amarosa {
+  umbrella header "Pods-Amarosa-umbrella.h"
+
+  export *
+  module * { export * }
+}

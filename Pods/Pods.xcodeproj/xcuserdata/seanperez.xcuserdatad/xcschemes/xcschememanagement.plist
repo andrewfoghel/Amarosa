@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-Amarosa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-AmarosaTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-AmarosaUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SkyFloatingLabelTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1664402742A0622A9D39AEE5B705E173</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>43E232A8843D27CE536F591915E87923</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A94B605FC86ABFC02B68EBD8F0CECF99</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B55B489ADD2E3538D7E5431457B25063</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

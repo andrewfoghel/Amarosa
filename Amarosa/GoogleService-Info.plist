@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>749051102812-5ikl647h4ffad9mqgur3q93477amglsq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.749051102812-5ikl647h4ffad9mqgur3q93477amglsq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDxIdbWxQXtbhtwIbw_K_w5u78dYg2kmvo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>749051102812</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.amarosa.ios</string>
+	<key>PROJECT_ID</key>
+	<string>amarosa-backend</string>
+	<key>STORAGE_BUCKET</key>
+	<string>amarosa-backend.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:749051102812:ios:753b3134075f1994</string>
+	<key>DATABASE_URL</key>
+	<string>https://amarosa-backend.firebaseio.com</string>
+</dict>
+</plist>
