@@ -15,6 +15,8 @@ target 'Amarosa' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
+  
+  pod 'SwiftyCam'
 
   target 'AmarosaTests' do
     inherit! :search_paths

@@ -17,6 +17,7 @@
 		0BDF8B131F141B17009B0180 /* ChatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF8B121F141B17009B0180 /* ChatCollectionViewController.swift */; };
 		0BDF8B151F141BD2009B0180 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF8B141F141BD2009B0180 /* ChatMessageCell.swift */; };
 		0BDF8B171F141F2C009B0180 /* NewMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF8B161F141F2C009B0180 /* NewMessageVC.swift */; };
+		0BDF8B1A1F14FE96009B0180 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF8B191F14FE96009B0180 /* CameraViewController.swift */; };
 		8478A4C4529A161F083453E8 /* Pods_AmarosaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E52C1D31386F1D931D9132 /* Pods_AmarosaTests.framework */; };
 		8B7F4539E4FDA20A9F780C7E /* Pods_AmarosaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A75035D57CCFEA58274F3BA /* Pods_AmarosaUITests.framework */; };
 		91B445D81EEC8352006C6F36 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B445D71EEC8352006C6F36 /* RoundedButton.swift */; };
@@ -99,6 +100,7 @@
 		0BDF8B121F141B17009B0180 /* ChatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewController.swift; sourceTree = "<group>"; };
 		0BDF8B141F141BD2009B0180 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		0BDF8B161F141F2C009B0180 /* NewMessageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageVC.swift; sourceTree = "<group>"; };
+		0BDF8B191F14FE96009B0180 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		23E52C1D31386F1D931D9132 /* Pods_AmarosaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmarosaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A75035D57CCFEA58274F3BA /* Pods_AmarosaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmarosaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C8DA5FE30C329ACEC358B3 /* Pods-Amarosa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amarosa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Amarosa/Pods-Amarosa.debug.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +212,14 @@
 				91B445DD1EECB125006C6F36 /* CreateAccountViewController.swift */,
 			);
 			name = LoginControllers;
+			sourceTree = "<group>";
+		};
+		0BDF8B181F14FE7E009B0180 /* CameraControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0BDF8B191F14FE96009B0180 /* CameraViewController.swift */,
+			);
+			name = CameraControllers;
 			sourceTree = "<group>";
 		};
 		91B445DF1EECC565006C6F36 /* Resources */ = {
@@ -356,6 +366,7 @@
 		91FE038E1E9184A4000929C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0BDF8B181F14FE7E009B0180 /* CameraControllers */,
 				0BDF8B011F141468009B0180 /* LoginControllers */,
 				0BDF8B001F14145A009B0180 /* MessagesControllers */,
 			);
@@ -742,6 +753,7 @@
 				91B445DE1EECB125006C6F36 /* CreateAccountViewController.swift in Sources */,
 				91FE03991E91F95A000929C0 /* DelayFunction.swift in Sources */,
 				91B445D81EEC8352006C6F36 /* RoundedButton.swift in Sources */,
+				0BDF8B1A1F14FE96009B0180 /* CameraViewController.swift in Sources */,
 				0BDF8B071F1418A1009B0180 /* Message.swift in Sources */,
 				91B445DA1EEC8D5D006C6F36 /* BorderedButton.swift in Sources */,
 				0BDF8B171F141F2C009B0180 /* NewMessageVC.swift in Sources */,

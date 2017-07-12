@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2181663863272CB431D109F1CEE325E5'
-               BlueprintName = 'SkyFloatingLabelTextField'
+               BlueprintIdentifier = '6892A7D1A97B9ABBAA73DEB381C257C2'
+               BlueprintName = 'SwiftyCam'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SkyFloatingLabelTextField.framework'>
+               BuildableName = 'SwiftyCam.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -53,6 +53,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
   - SkyFloatingLabelTextField (3.1.0)
+  - SwiftyCam (2.4.0)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - SkyFloatingLabelTextField (~> 3.1.0)
+  - SwiftyCam
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -79,7 +81,8 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
+  SwiftyCam: cb83b9a8e181f70fb741d30cea724c6b045a4549
 
-PODFILE CHECKSUM: 8284fa5d57b4aedcf93718a22e0ab15c4544cbb6
+PODFILE CHECKSUM: 46a6eeddd790e4b6a2cba62046f569e217c15036
 
 COCOAPODS: 1.2.0
