@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cHH-12-2eg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8gx-ka-yS6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Sign In View Controller-->
         <scene sceneID="bar-Ie-Yzf">
@@ -228,7 +233,7 @@
                         <outlet property="emailTxt" destination="zZg-Bf-mmi" id="qDN-KK-Q8a"/>
                         <outlet property="passwordTxt" destination="6hq-NM-7rf" id="VdF-3O-MdE"/>
                         <outlet property="signInBtn" destination="fh6-fM-j38" id="ygG-1j-8CJ"/>
-                        <segue destination="fSO-lE-s7B" kind="show" identifier="message" id="Moa-AK-cVG"/>
+                        <segue destination="lBG-VX-g13" kind="show" identifier="camera" id="tW0-Ih-P8a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RbV-6h-mHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jL6-VI-OL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1327.2" y="203.74812593703149"/>
+            <point key="canvasLocation" x="1343" y="596"/>
         </scene>
         <!--New MessageVC-->
         <scene sceneID="cv6-Jm-24J">
@@ -348,12 +353,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0q-86-Ooz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2317.5999999999999" y="17.541229385307346"/>
+            <point key="canvasLocation" x="2374" y="596"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="O5c-EZ-p9W">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Vd0-Mv-aEc" customClass="RootViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wpg-8j-axU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5551" y="-731"/>
+        </scene>
+        <!--Finished Profile View Controller-->
+        <scene sceneID="DEI-HO-ify">
+            <objects>
+                <viewController storyboardIdentifier="profile" id="sXm-JY-Kk8" customClass="FinishedProfileViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PYo-H7-voI"/>
+                        <viewControllerLayoutGuide type="bottom" id="8jS-qn-Rxw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gaP-tA-71H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uLO-bq-9d1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4918" y="-83"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="ygN-NM-HEW">
             <objects>
-                <viewController id="cHH-12-2eg" customClass="CameraViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="camera" id="cHH-12-2eg" customClass="CameraViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rwR-UY-xAA"/>
                         <viewControllerLayoutGuide type="bottom" id="Sl6-hC-A9W"/>
@@ -362,24 +393,134 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CC0-rD-EJG">
-                                <rect key="frame" x="155" y="582" width="65" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAT-Mk-NFO" customClass="AAPLPreviewView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4M-dv-D3S">
+                                        <rect key="frame" x="154.5" y="594" width="65" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="W5s-W5-ONA"/>
+                                            <constraint firstAttribute="width" constant="65" id="jDZ-VQ-vd9"/>
+                                        </constraints>
+                                        <state key="normal" image="captureBtn"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-po-FaG">
+                                        <rect key="frame" x="329" y="20" width="0.0" height="0.0"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="h4M-dv-D3S" firstAttribute="centerX" secondItem="jAT-Mk-NFO" secondAttribute="centerX" id="faW-gr-Psh"/>
+                                    <constraint firstAttribute="bottom" secondItem="h4M-dv-D3S" secondAttribute="bottom" constant="8" id="pdP-jK-2QB"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sl6-hC-A9W" firstAttribute="top" secondItem="jAT-Mk-NFO" secondAttribute="bottom" id="BHx-VZ-3N1"/>
+                            <constraint firstItem="jAT-Mk-NFO" firstAttribute="top" secondItem="fkm-ZO-xMS" secondAttribute="top" id="Bpx-oq-cWS"/>
+                            <constraint firstItem="jAT-Mk-NFO" firstAttribute="leading" secondItem="fkm-ZO-xMS" secondAttribute="leading" id="NRv-sV-OjY"/>
+                            <constraint firstAttribute="trailing" secondItem="jAT-Mk-NFO" secondAttribute="trailing" id="byW-xP-W0D"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraBtn" destination="LWq-po-FaG" id="OHe-OS-hLl"/>
+                        <outlet property="previewView" destination="jAT-Mk-NFO" id="XYo-nP-4Vg"/>
+                        <outlet property="recordBtn" destination="h4M-dv-D3S" id="w5f-na-0rY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BhP-6f-iVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3351.1999999999998" y="-884.70764617691157"/>
+            <point key="canvasLocation" x="5550" y="-83"/>
+        </scene>
+        <!--Love Stories View Controller-->
+        <scene sceneID="RTB-4F-iAr">
+            <objects>
+                <viewController storyboardIdentifier="loveStory" id="cBl-Cf-fpg" customClass="LoveStoriesViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jzJ-ts-NMq"/>
+                        <viewControllerLayoutGuide type="bottom" id="RqK-lp-mJt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZsM-5F-dCG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zFK-1D-ent" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6180" y="-83"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="Igj-kM-84u">
+            <objects>
+                <viewController id="lBG-VX-g13" customClass="ProfileViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4LL-Y9-1G0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Je1-FI-rYG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sOk-IE-HJv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="L3m-97-Hq5" kind="show" identifier="create" id="Wp4-Nw-ok3"/>
+                        <segue destination="H59-oI-C5q" kind="show" identifier="join" id="NyH-ys-jjI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="461-OF-GXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2303" y="-732"/>
+        </scene>
+        <!--Create Lover Page View Controller-->
+        <scene sceneID="MGP-Ik-Te5">
+            <objects>
+                <viewController id="L3m-97-Hq5" customClass="CreateLoverPageViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RcN-Qf-arr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fxx-BY-LGa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="WUS-fL-j3F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="lBG-VX-g13" kind="show" identifier="createBack" id="Ijl-qc-Hy0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAH-wU-n66" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3231" y="-730"/>
+        </scene>
+        <!--Join Lover Page View Controller-->
+        <scene sceneID="0FJ-i7-DJD">
+            <objects>
+                <viewController id="H59-oI-C5q" customClass="JoinLoverPageViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iu5-uk-m4a"/>
+                        <viewControllerLayoutGuide type="bottom" id="zOW-Ot-3dr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="8GA-Db-4Ii">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="lBG-VX-g13" kind="show" identifier="joinBack" id="ZMF-Vh-1Pw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="re1-sF-rLE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3933.5999999999999" y="-730.88455772113946"/>
         </scene>
         <!--Chat Collection View Controller-->
         <scene sceneID="m2a-19-rkE">
             <objects>
                 <collectionViewController id="485-XJ-B96" customClass="ChatCollectionViewController" customModule="Amarosa" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Sji-c2-Lxg">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Sji-c2-Lxg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -407,7 +548,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWQ-eV-pbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3337" y="214"/>
+            <point key="canvasLocation" x="3351" y="596"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="Img-4i-Rc9">
@@ -682,18 +823,19 @@
                         <outletCollection property="genderButtons" destination="caB-Ra-Nxu" collectionClass="NSMutableArray" id="tUL-Oi-G8z"/>
                         <outletCollection property="genderButtons" destination="RgW-Hf-nys" collectionClass="NSMutableArray" id="XJC-eq-y8K"/>
                         <outletCollection property="genderButtons" destination="fPP-Sx-lX9" collectionClass="NSMutableArray" id="Max-KK-jZI"/>
+                        <segue destination="lBG-VX-g13" kind="show" identifier="camera1" id="0fS-sZ-zxo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GVc-jn-gdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103.2" y="-517.6911544227886"/>
+            <point key="canvasLocation" x="1230" y="-732"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hVM-Em-A1u">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fSO-lE-s7B" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mei-BU-sIC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mei-BU-sIC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -704,7 +846,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1U3-Gi-y4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="203.74812593703149"/>
+            <point key="canvasLocation" x="388" y="596"/>
         </scene>
     </scenes>
     <resources>
@@ -718,9 +860,11 @@
         <image name="Other" width="115" height="115"/>
         <image name="OtherTRUE" width="117" height="117"/>
         <image name="SignInBG" width="750" height="1334"/>
+        <image name="captureBtn" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uJ4-sp-Eer"/>
-        <segue reference="Za2-Vb-qev"/>
+        <segue reference="jU1-HR-C34"/>
+        <segue reference="Ijl-qc-Hy0"/>
     </inferredMetricsTieBreakers>
 </document>

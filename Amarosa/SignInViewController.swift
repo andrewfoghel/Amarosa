@@ -38,7 +38,7 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
                 }
                 print("successful login to firebase")
                     //performSegue() to cameraVC
-                self.performSegue(withIdentifier: "message", sender: nil)
+                self.performSegue(withIdentifier: "camera", sender: nil)
             }
         }
         
@@ -51,16 +51,15 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
         view.addSubview(faceLoginButton)
 
         /*faceLoginButton.frame = CGRect(x: signInBtn.frame.origin.x, y: signInBtn.frame.origin.y + width/5.33,width: signInBtn.frame.size.width, height: signInBtn.frame.size.height)*/
-        faceLoginButton.frame = CGRect(x: 10000, y: signInBtn.frame.origin.y + width/5.33,width: signInBtn.frame.size.width, height: signInBtn.frame.size.height)
+        faceLoginButton.frame = CGRect(x: width, y: signInBtn.frame.origin.y + width/5.33,width: signInBtn.frame.size.width, height: signInBtn.frame.size.height)
         faceLoginButton.layer.cornerRadius = 20
         faceLoginButton.layer.masksToBounds = true
         faceLoginButton.delegate = self
         
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 20, initialSpringVelocity: 10, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1, delay: 0.5, animations: {
             self.faceLoginButton.frame = CGRect(x: self.signInBtn.frame.origin.x
                 , y: self.signInBtn.frame.origin.y + width/5.33,width: self.view.frame.size.width - self.signInBtn.frame.origin.x*2, height: self.signInBtn.frame.size.height)
-        }, completion: nil)
-        
+        })
         
         //needs to be an array
         faceLoginButton.readPermissions = ["email", "public_profile"]
@@ -80,7 +79,7 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
             print("Successfully logged in with facebook")
             //initialze a facebook grab request
             showEmail()
-            performSegue(withIdentifier: "message", sender: nil)
+            performSegue(withIdentifier: "camera", sender: nil)
         }
     }
     
@@ -134,7 +133,7 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
                                                 return
                                             }
                                             if let facebookImageUrl = metadata?.downloadURL()?.absoluteString{
-                                                let values:[String:AnyObject] = ["name":user?.displayName as AnyObject,"email":user?.email as AnyObject,"profileImageUrl":facebookImageUrl as AnyObject,"birthday":"" as AnyObject,"gender":"" as AnyObject]
+                                                let values:[String:AnyObject] = ["name":user?.displayName as AnyObject,"email":user?.email as AnyObject,"profileImageUrl":facebookImageUrl as AnyObject,"birthday":836188340 as AnyObject,"gender":"" as AnyObject]
                                                 userRef.setValue(values)
                                             }
                                         })

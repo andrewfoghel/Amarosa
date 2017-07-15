@@ -45,17 +45,35 @@ class CreateAccountViewController: UIViewController {
                     self.myAlert(title: "Unable to create account", message: err.localizedDescription)
                     return
                 }
-                if let uid = user?.uid{
-                    let userRef = Database.database().reference().child("users").child(uid)
-                    let value: [String:AnyObject] = ["name":name as AnyObject,"email":email as AnyObject,"profileImageUrl":"" as AnyObject,"birthday":self.timeStamp as AnyObject,"gender":"" as AnyObject]
-                    userRef.setValue(value, withCompletionBlock: { (error, ref) in
+                guard let uid = user?.uid else{
+                    return
+                }
+                
+                if let imageData = UIImageJPEGRepresentation(#imageLiteral(resourceName: "defaultUser"), 0.5){
+                    var uuid = UUID().uuidString
+                    Storage.storage().reference().child("user_profile_pictures").child(uuid).putData(imageData, metadata: nil, completion: { (metadata, error) in
                         if let err = error{
-                            print("AA:"+err.localizedDescription)
+                            print(err.localizedDescription)
                             return
                         }
-                        print("success put to db")
+                        
+                        if let url = metadata?.downloadURL()?.absoluteString{
+                              let userRef = Database.database().reference().child("users").child(uid)
+                             let value: [String:AnyObject] = ["name":name as AnyObject,"email":email as AnyObject,"profileImageUrl":url as AnyObject,"birthday":self.timeStamp as AnyObject,"gender":"" as AnyObject]
+                             userRef.setValue(value, withCompletionBlock: { (error, ref) in
+                             if let err = error{
+                             print(err.localizedDescription)
+                             return
+                             }
+                             print("success put to db")
+                             self.performSegue(withIdentifier: "camera1", sender: nil)
+                             })
+
+                        }
+                        
                     })
                 }
+                
             })
         }
         

@@ -14,6 +14,6 @@ class User: NSObject{
     var email: String?
     var uid: String?
     var gender: String?
-    var birthday: String?
+    var birthday: AnyObject?
     var profileImageUrl: String?
 }

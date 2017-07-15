@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B20C0991F1929A600084B0A /* LoveStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20C0981F1929A600084B0A /* LoveStoriesViewController.swift */; };
+		0B20C09C1F19303900084B0A /* LoveStoryPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20C09B1F19303900084B0A /* LoveStoryPostCell.swift */; };
+		0B40BC4D1F179F380014DA13 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40BC4C1F179F380014DA13 /* ProfileViewController.swift */; };
+		0B40BC691F1802190014DA13 /* AAPLCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B40BC661F1802190014DA13 /* AAPLCameraViewController.m */; };
+		0B40BC6A1F1802190014DA13 /* AAPLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B40BC681F1802190014DA13 /* AAPLPreviewView.m */; };
+		0B40BC6C1F1808D90014DA13 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B40BC6B1F1808D90014DA13 /* RootViewController.swift */; };
+		0B59BD361F1958F4005BA3D4 /* FinishedProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B59BD351F1958F4005BA3D4 /* FinishedProfileViewController.swift */; };
+		0B9506E01F195F290082AD81 /* CreateLoverPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9506DF1F195F290082AD81 /* CreateLoverPageViewController.swift */; };
+		0B9506E21F195F3B0082AD81 /* JoinLoverPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9506E11F195F3B0082AD81 /* JoinLoverPageViewController.swift */; };
 		0BDF8AFF1F13D54F009B0180 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BDF8AFE1F13D54F009B0180 /* GoogleService-Info.plist */; };
 		0BDF8B051F1414AE009B0180 /* MessageLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF8B041F1414AE009B0180 /* MessageLogViewController.swift */; };
 		0BDF8B071F1418A1009B0180 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDF8B061F1418A1009B0180 /* Message.swift */; };
@@ -90,6 +99,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B20C0981F1929A600084B0A /* LoveStoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoveStoriesViewController.swift; sourceTree = "<group>"; };
+		0B20C09B1F19303900084B0A /* LoveStoryPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoveStoryPostCell.swift; sourceTree = "<group>"; };
+		0B40BC4C1F179F380014DA13 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0B40BC5A1F17ED010014DA13 /* Amarosa-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Amarosa-Bridging-Header.h"; sourceTree = "<group>"; };
+		0B40BC641F1802190014DA13 /* AAPLCameraVCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraVCDelegate.h; sourceTree = "<group>"; };
+		0B40BC651F1802190014DA13 /* AAPLCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraViewController.h; sourceTree = "<group>"; };
+		0B40BC661F1802190014DA13 /* AAPLCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCameraViewController.m; sourceTree = "<group>"; };
+		0B40BC671F1802190014DA13 /* AAPLPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLPreviewView.h; sourceTree = "<group>"; };
+		0B40BC681F1802190014DA13 /* AAPLPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLPreviewView.m; sourceTree = "<group>"; };
+		0B40BC6B1F1808D90014DA13 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		0B59BD351F1958F4005BA3D4 /* FinishedProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedProfileViewController.swift; sourceTree = "<group>"; };
+		0B9506DF1F195F290082AD81 /* CreateLoverPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLoverPageViewController.swift; sourceTree = "<group>"; };
+		0B9506E11F195F3B0082AD81 /* JoinLoverPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinLoverPageViewController.swift; sourceTree = "<group>"; };
 		0BDF8AFE1F13D54F009B0180 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BDF8B041F1414AE009B0180 /* MessageLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageLogViewController.swift; sourceTree = "<group>"; };
 		0BDF8B061F1418A1009B0180 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -195,6 +217,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B20C09A1F1929B000084B0A /* LoveStoryControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B20C0981F1929A600084B0A /* LoveStoriesViewController.swift */,
+			);
+			name = LoveStoryControllers;
+			sourceTree = "<group>";
+		};
+		0B40BC4B1F179F1F0014DA13 /* ProfileControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B40BC4C1F179F380014DA13 /* ProfileViewController.swift */,
+				0B59BD351F1958F4005BA3D4 /* FinishedProfileViewController.swift */,
+			);
+			name = ProfileControllers;
+			sourceTree = "<group>";
+		};
+		0B9506DE1F195F0E0082AD81 /* LoverPageSetupControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B9506DF1F195F290082AD81 /* CreateLoverPageViewController.swift */,
+				0B9506E11F195F3B0082AD81 /* JoinLoverPageViewController.swift */,
+			);
+			name = LoverPageSetupControllers;
+			sourceTree = "<group>";
+		};
 		0BDF8B001F14145A009B0180 /* MessagesControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,7 +265,14 @@
 		0BDF8B181F14FE7E009B0180 /* CameraControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B40BC641F1802190014DA13 /* AAPLCameraVCDelegate.h */,
+				0B40BC651F1802190014DA13 /* AAPLCameraViewController.h */,
+				0B40BC661F1802190014DA13 /* AAPLCameraViewController.m */,
+				0B40BC671F1802190014DA13 /* AAPLPreviewView.h */,
+				0B40BC681F1802190014DA13 /* AAPLPreviewView.m */,
 				0BDF8B191F14FE96009B0180 /* CameraViewController.swift */,
+				0B40BC5A1F17ED010014DA13 /* Amarosa-Bridging-Header.h */,
+				0B40BC6B1F1808D90014DA13 /* RootViewController.swift */,
 			);
 			name = CameraControllers;
 			sourceTree = "<group>";
@@ -366,6 +421,9 @@
 		91FE038E1E9184A4000929C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0B9506DE1F195F0E0082AD81 /* LoverPageSetupControllers */,
+				0B20C09A1F1929B000084B0A /* LoveStoryControllers */,
+				0B40BC4B1F179F1F0014DA13 /* ProfileControllers */,
 				0BDF8B181F14FE7E009B0180 /* CameraControllers */,
 				0BDF8B011F141468009B0180 /* LoginControllers */,
 				0BDF8B001F14145A009B0180 /* MessagesControllers */,
@@ -401,6 +459,7 @@
 				0BDF8B0C1F141976009B0180 /* ImageCache.swift */,
 				0BDF8B0E1F1419B5009B0180 /* ChatInputContainer.swift */,
 				0BDF8B141F141BD2009B0180 /* ChatMessageCell.swift */,
+				0B20C09B1F19303900084B0A /* LoveStoryPostCell.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -506,6 +565,7 @@
 					91B4E2241E90722B0013CAA7 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = UTM6LELLUH;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					91B4E2381E90722B0013CAA7 = {
@@ -750,12 +810,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B9506E21F195F3B0082AD81 /* JoinLoverPageViewController.swift in Sources */,
+				0B59BD361F1958F4005BA3D4 /* FinishedProfileViewController.swift in Sources */,
+				0B40BC691F1802190014DA13 /* AAPLCameraViewController.m in Sources */,
 				91B445DE1EECB125006C6F36 /* CreateAccountViewController.swift in Sources */,
 				91FE03991E91F95A000929C0 /* DelayFunction.swift in Sources */,
 				91B445D81EEC8352006C6F36 /* RoundedButton.swift in Sources */,
 				0BDF8B1A1F14FE96009B0180 /* CameraViewController.swift in Sources */,
 				0BDF8B071F1418A1009B0180 /* Message.swift in Sources */,
 				91B445DA1EEC8D5D006C6F36 /* BorderedButton.swift in Sources */,
+				0B40BC6A1F1802190014DA13 /* AAPLPreviewView.m in Sources */,
+				0B9506E01F195F290082AD81 /* CreateLoverPageViewController.swift in Sources */,
+				0B20C09C1F19303900084B0A /* LoveStoryPostCell.swift in Sources */,
+				0B40BC4D1F179F380014DA13 /* ProfileViewController.swift in Sources */,
 				0BDF8B171F141F2C009B0180 /* NewMessageVC.swift in Sources */,
 				0BDF8B151F141BD2009B0180 /* ChatMessageCell.swift in Sources */,
 				91B445DC1EECB119006C6F36 /* SignInViewController.swift in Sources */,
@@ -763,7 +830,9 @@
 				0BDF8B0F1F1419B5009B0180 /* ChatInputContainer.swift in Sources */,
 				91B446301EECD2D8006C6F36 /* UDatePicker.swift in Sources */,
 				91B4E2291E90722B0013CAA7 /* AppDelegate.swift in Sources */,
+				0B20C0991F1929A600084B0A /* LoveStoriesViewController.swift in Sources */,
 				0BDF8B091F1418C9009B0180 /* User.swift in Sources */,
+				0B40BC6C1F1808D90014DA13 /* RootViewController.swift in Sources */,
 				0BDF8B0B1F141921009B0180 /* UserCell.swift in Sources */,
 				0BDF8B131F141B17009B0180 /* ChatCollectionViewController.swift in Sources */,
 				0BDF8B051F1414AE009B0180 /* MessageLogViewController.swift in Sources */,
@@ -923,12 +992,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
 				ASSETCATALOG_WARNINGS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UTM6LELLUH;
 				INFOPLIST_FILE = Amarosa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seanperez.Amarosa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Amarosa/Amarosa-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -940,12 +1012,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
 				ASSETCATALOG_WARNINGS = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UTM6LELLUH;
 				INFOPLIST_FILE = Amarosa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seanperez.Amarosa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Amarosa/Amarosa-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
