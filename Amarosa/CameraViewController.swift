@@ -22,7 +22,11 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
     var postBtn: UIButton?
     var activityMonitor: UIActivityIndicatorView?
     var myUrl: URL?
+    var flashEnabled = false
+    var front = false
+    var flashView: UIView?
     
+    var loverStoryId: String?
     
     //Outlets
     @IBOutlet weak var cameraBtn: UIButton!
@@ -34,36 +38,105 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
         delegate = self
         _previewView = previewView
         
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(changeCamera))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleChangeCamera))
         gesture.numberOfTapsRequired = 2
         _previewView.addGestureRecognizer(gesture)
-        
+        _previewView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(pinch)))
         
         recordBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePicture)))
         recordBtn.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleVideo)))
         
         super.viewDidLoad()
         
+        getLoverStoryId()
+        
+        flashView = UIView(frame: self.view.frame)
+        flashView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.85)
+        
         flashBtn = UIButton(frame: CGRect(x: self.view.frame.midX - width/20.54, y: (height - width/4.92 - width/10.27 - 16), width: width/10.27, height: width/10.27))
         flashBtn?.setImage(#imageLiteral(resourceName: "Flash FALSE"), for: .normal)
-//        flashBtn?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFlash)))
+        flashBtn?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFlash)))
         view.addSubview(flashBtn!)
         
     }
     
-    func handlePicture(gesture: UITapGestureRecognizer){
-        snapStillImage()
+    func getLoverStoryId(){
+        guard let uid = Auth.auth().currentUser?.uid else{
+            return
+        }
+        
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String:AnyObject]{
+                self.loverStoryId = dictionary["lovePage"] as? String
+            }
+        })
         
     }
     
+    func handlePicture(gesture: UITapGestureRecognizer){
+        if flashEnabled == true{
+        toggleFlash()
+            delay(0.5, completion: {
+                self.snapStillImage()
+                self.toggleFlash()
+                self.flashView?.removeFromSuperview()
+            })
+        }else{
+            snapStillImage()
+        }
+    }
+    
+    let minimumZoom: CGFloat = 1.0
+    let maximumZoom: CGFloat = 3.0
+    var lastZoomFactor: CGFloat = 1.0
+    
+    func pinch(_ pinch: UIPinchGestureRecognizer) {
+        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        
+        // Return zoom value between the minimum and maximum zoom values
+        func minMaxZoom(_ factor: CGFloat) -> CGFloat {
+            return min(min(max(factor, minimumZoom), maximumZoom), device!.activeFormat.videoMaxZoomFactor)
+        }
+        
+        func update(scale factor: CGFloat) {
+            do {
+                try device?.lockForConfiguration()
+                defer { device?.unlockForConfiguration() }
+                device?.videoZoomFactor = factor
+            } catch {
+                print("\(error.localizedDescription)")
+            }
+        }
+        
+        let newScaleFactor = minMaxZoom(pinch.scale * lastZoomFactor)
+        
+        switch pinch.state {
+        case .began: fallthrough
+        case .changed: update(scale: newScaleFactor)
+        case .ended:
+            lastZoomFactor = minMaxZoom(newScaleFactor)
+            update(scale: lastZoomFactor)
+        default: break
+        }
+    }
     
     func handleVideo(gesture: UILongPressGestureRecognizer){
         switch gesture.state {
         case .began:
-            toggleMovieRecording()
-            recordingHasStarted()
+            if flashEnabled == true{
+                toggleFlash()
+                toggleMovieRecording()
+                recordingHasStarted()
+            }else{
+                toggleMovieRecording()
+                recordingHasStarted()
+            }
         case .ended:
-            toggleMovieRecording()
+            if flashEnabled == true{
+                toggleFlash()
+                flashView?.removeFromSuperview()
+            }
+                toggleMovieRecording()
         default:
             break
         }
@@ -73,6 +146,15 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
         changeCamera()
     }
     
+    func handleChangeCamera(gesture: UITapGestureRecognizer){
+        front = !front
+        changeCamera()
+        if front == true{
+            print("front")
+        }else{
+            print("back")
+        }
+    }
     
     func shouldEnableCameraUI(_ enable: Bool) {
         cameraBtn.isEnabled = enable
@@ -115,11 +197,11 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
             }
         })
         
-        exitBtn = UIButton(frame: CGRect(x: self.view.frame.midX - ((width/8.27) * 3), y: height - width/8.27 - 8, width: width/8.27, height: width/8.27))
+        exitBtn = UIButton(frame: CGRect(x: self.view.frame.midX - ((width/8.27) * 3), y: height - width/8.27 - width/40, width: width/8.27, height: width/8.27))
         exitBtn?.setImage(#imageLiteral(resourceName: "cancel"), for: .normal)
         exitBtn?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissOnTap)))
         exitBtn?.layer.zPosition = 3
-        postBtn = UIButton(frame: CGRect(x: self.view.frame.midX + ((width/8.27) * 2), y: height - width/8.27 - 8, width: width/8.27, height: width/8.27))
+        postBtn = UIButton(frame: CGRect(x: self.view.frame.midX + ((width/8.27) * 2), y: height - width/8.27 - width/40, width: width/8.27, height: width/8.27))
         postBtn?.setImage(#imageLiteral(resourceName: "post"), for: .normal)
         postBtn?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePostVideo)))
         postBtn?.layer.zPosition = 3
@@ -137,11 +219,11 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
     func snapshotTaken(_ snapshotData: Data!) {
         imageView = UIImageView(image: UIImage(data: snapshotData))
         imageView?.frame = self.view.frame
-        exitBtn = UIButton(frame: CGRect(x: self.view.frame.midX - ((width/8.27) * 3), y: height - width/8.27 - 8, width: width/8.27, height: width/8.27))
+        exitBtn = UIButton(frame: CGRect(x: self.view.frame.midX - ((width/8.27) * 3), y: height - width/8.27 - width/40, width: width/8.27, height: width/8.27))
         exitBtn?.setImage(#imageLiteral(resourceName: "cancel"), for: .normal)
         exitBtn?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissOnTap)))
         exitBtn?.layer.zPosition = 3
-        postBtn = UIButton(frame: CGRect(x: self.view.frame.midX + ((width/8.27) * 2), y: height - width/8.27 - 8, width: width/8.27, height: width/8.27))
+        postBtn = UIButton(frame: CGRect(x: self.view.frame.midX + ((width/8.27) * 2), y: height - width/8.27 - width/40, width: width/8.27, height: width/8.27))
         postBtn?.setImage(#imageLiteral(resourceName: "post"), for: .normal)
         postBtn?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePostPhoto)))
         postBtn?.layer.zPosition = 3
@@ -175,9 +257,9 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
                 print(err.localizedDescription)
                 return
             }
-            
+            let myUuid = UUID().uuidString
             if let downloadUrl = metadata?.downloadURL()?.absoluteString{
-                Database.database().reference().child("loveStories").child(uid).childByAutoId().setValue(["storyVideoUrl":downloadUrl,"poster":uid], withCompletionBlock: { (error, ref) in
+                Database.database().reference().child("loveStories").child(myUuid).setValue(["storyVideoUrl":downloadUrl,"poster":uid], withCompletionBlock: { (error, ref) in
                     if let err = error{
                         print(err.localizedDescription)
                         return
@@ -190,8 +272,17 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
                     self.view.isUserInteractionEnabled = true
                     
                     print("Success Video Post")
+                    
+                    Database.database().reference().child("loverProfiles").child(self.loverStoryId!).child("post").updateChildValues([myUuid:1], withCompletionBlock: { (error, ref) in
+                        if let err = error{
+                            print(err.localizedDescription)
+                            return
+                        }
+                        print("good job")
+                    })
                 })
             }
+            
             
             
         }
@@ -232,15 +323,21 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
                     guard let uid = Auth.auth().currentUser?.uid else{
                         return
                     }
-                    
+                    let myUuid = UUID().uuidString
                     if let downloadURL = metadata?.downloadURL()?.absoluteString {
                        
-                        Database.database().reference().child("loveStories").child(uid).childByAutoId().setValue(["storyImageUrl":downloadURL,"imageWidth":image.size.width,"imageHeight": image.size.height,"poster":uid], withCompletionBlock: {(error, ref) in
+                        Database.database().reference().child("loveStories").child(myUuid).setValue(["storyImageUrl":downloadURL,"imageWidth":image.size.width,"imageHeight": image.size.height,"poster":uid], withCompletionBlock: {(error, ref) in
                             if let err = error{
                                 print(err.localizedDescription)
                                 return
                             }
-                           
+                            Database.database().reference().child("loverProfiles").child(self.loverStoryId!).child("post").updateChildValues([myUuid:1], withCompletionBlock: { (error, ref) in
+                                if let err = error{
+                                    print(err.localizedDescription)
+                                    return
+                                }
+                                print("good job")
+                            })
                         })
                     }
                     self.activityMonitor?.stopAnimating()
@@ -249,21 +346,52 @@ class CameraViewController: AAPLCameraViewController, AAPLCameraVCDelegate{
                     self.imageView?.removeFromSuperview()
                     self.view.isUserInteractionEnabled = true
                 })
+          
             }
         }
     }
     
 
+    func toggleFlash() {
+        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        if front == false{
+            if (device?.hasTorch)! {
+                do {
+                    try device?.lockForConfiguration()
+                    if (device?.torchMode == AVCaptureTorchMode.on) {
+                        device?.torchMode = AVCaptureTorchMode.off
+                    } else {
+                        do {
+                            try device?.setTorchModeOnWithLevel(1.0)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    device?.unlockForConfiguration()
+                } catch {
+                    print(error)
+                }
+            }
+        }else{
+            print("front flash")
+            view.addSubview(flashView!)
+        }
+    }
     
-    
-    
-    
-    
-    
+    func handleFlash(gesture: UITapGestureRecognizer){
+        flashEnabled = !flashEnabled
+        
+        if flashEnabled == true{
+            flashBtn?.setImage(#imageLiteral(resourceName: "Flash TRUE"), for: .normal)
+        }else{
+            flashBtn?.setImage(#imageLiteral(resourceName: "Flash FALSE"), for: .normal)
+        }
+    }
     
     func dismissOnTap(gesture: UITapGestureRecognizer){
         exitBtn?.removeFromSuperview()
         imageView?.removeFromSuperview()
+        player?.pause()
         playerLayer?.removeFromSuperlayer()
         postBtn?.removeFromSuperview()
     }

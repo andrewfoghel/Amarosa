@@ -28,6 +28,11 @@ class MessageLogViewController: UIViewController, UITableViewDelegate, UITableVi
         
         myTableView.register(UserCell.self, forCellReuseIdentifier: "cell")
         myTableView.allowsMultipleSelectionDuringEditing = true
+        myTableView.separatorStyle = .none
+        
+        self.navigationItem.title = "Messages"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir Next", size: 20)!,NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 1, green: 0.28, blue: 0.28, alpha: 1)
         
         messages.removeAll()
         messagesDictionary.removeAll()
@@ -36,6 +41,7 @@ class MessageLogViewController: UIViewController, UITableViewDelegate, UITableVi
             self.myTableView.reloadData()
         }
         observeUserMessages()
+        
         
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -103,7 +109,8 @@ class MessageLogViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    var timer: Timer?
+    
+    
     
     func handleReloadTable(){
         self.messages = Array(self.messagesDictionary.values)
@@ -145,7 +152,7 @@ class MessageLogViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     
-    
+    var timer: Timer?
     
     private func attemptReloadOfTable(){
         self.timer?.invalidate()
@@ -188,8 +195,15 @@ class MessageLogViewController: UIViewController, UITableViewDelegate, UITableVi
                 return
             }
             let user = User()
+            
             user.uid = chatPartnerId
-            user.setValuesForKeys(dictionary)
+            user.name = dictionary["name"] as? String
+            user.email = dictionary["email"] as? String
+            user.birthday = dictionary["birthday"] as? AnyObject
+            user.gender = dictionary["gender"] as? String
+            user.loverStoryID = dictionary["lovePage"] as? String
+            user.profileImageUrl = dictionary["profileImageUrl"] as? String
+            
             chosenUser = user
             self.performSegue(withIdentifier: "chatLog1", sender: nil)
         })
@@ -220,5 +234,7 @@ class MessageLogViewController: UIViewController, UITableViewDelegate, UITableVi
     func hideKeyboard(){
         self.view.endEditing(true)
     }
+    
+    
     
 }

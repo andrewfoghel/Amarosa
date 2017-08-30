@@ -85,10 +85,6 @@ class ChatInputContainerView: UIView, UITextFieldDelegate{
         separator.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

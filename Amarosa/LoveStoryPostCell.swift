@@ -12,11 +12,8 @@ class LoveStoryPostCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "Andrew")
         iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = width/32
-        iv.layer.borderColor = UIColor.red.cgColor
-        iv.layer.borderWidth = width/160
+        iv.layer.cornerRadius = width/64
         iv.layer.masksToBounds = true
 
         return iv

@@ -57,8 +57,6 @@ class ChatMessageCell: UICollectionViewCell {
     
     
     func handleZoomTap(tapGesture: UITapGestureRecognizer){
-        //dont perform a lot of custom logic inside a view class
-        
         if message?.videoUrl != nil{
             return
         }
@@ -90,12 +88,7 @@ class ChatMessageCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    
-    
-    
-    
-    
-    
+        
     var bubbleWidthAnchor: NSLayoutConstraint?
     var bubbleViewRightAnchor: NSLayoutConstraint?
     var bubbleViewLeftAnchor: NSLayoutConstraint?
@@ -138,7 +131,7 @@ class ChatMessageCell: UICollectionViewCell {
         bubbleViewRightAnchor?.isActive = true
         
         bubbleViewLeftAnchor = bubbleView.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8)
-        //   bubbleViewLeftAnchor?.isActive = false
+        
         
         bubbleView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         bubbleWidthAnchor = bubbleView.widthAnchor.constraint(equalToConstant: 200)

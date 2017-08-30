@@ -387,7 +387,7 @@ class ChatCollectionViewController: UICollectionViewController,UITextFieldDelega
  
         if message.fromId == Auth.auth().currentUser?.uid{
             //outgoing blue
-            cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
+            cell.bubbleView.backgroundColor = UIColor(red: 1, green: 0.28, blue: 0.28, alpha: 1)
             cell.textView.textColor = .white
             
             cell.bubbleViewLeftAnchor?.isActive = false

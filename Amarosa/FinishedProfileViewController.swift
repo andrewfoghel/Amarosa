@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 
+var userFriends = [String]()
+var loveStoryCelebrators = [String]()
+
 class FinishedProfileViewController: UIViewController {
 
     //Variables
@@ -25,6 +28,7 @@ class FinishedProfileViewController: UIViewController {
     var loverPageLbl: UILabel?
     var infoLbl1: UILabel?
     var infoLbl2: UILabel?
+    var searchUsersBtn: UIButton?
     
     var width = UIScreen.main.bounds.width
     
@@ -38,7 +42,7 @@ class FinishedProfileViewController: UIViewController {
         
         getUserDataFromFirebase()
         setupUI()
-        
+
     }
     
     
@@ -78,11 +82,27 @@ class FinishedProfileViewController: UIViewController {
         
         messagesBtn = UIButton(frame: CGRect(x: width - width/10.67 - width/9.14, y: (editProfileBtn?.frame.origin.y)! + (editProfileBtn?.frame.size.height)! + width/64, width: width/9.14, height: width/9.14))
         messagesBtn?.setImage(#imageLiteral(resourceName: "messages"), for: .normal)
+        messagesBtn?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMessage)))
         view.addSubview(messagesBtn!)
         
         lineInset = UILabel(frame: CGRect(x: width/20, y: (notificationsBtn?.frame.origin.y)! + width/9.14 + width/6.33, width: width - width/10, height: width/320))
         lineInset?.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         view.addSubview(lineInset!)
+        
+        searchUsersBtn = UIButton(frame: CGRect(x: width/40, y: width/20, width: width/10.66, height: width/10.66))
+        searchUsersBtn?.setImage(#imageLiteral(resourceName: "searchIcon"), for: .normal)
+        searchUsersBtn?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSearchUsers)))
+        view.addSubview(searchUsersBtn!)
+        
+    }
+    
+    func handleMessage(gesture: UITapGestureRecognizer){
+        performSegue(withIdentifier: "messages", sender: nil)
+        
+    }
+    
+    func handleSearchUsers(gesture: UITapGestureRecognizer){
+        performSegue(withIdentifier: "test", sender: nil)
     }
     
     func getUserDataFromFirebase(){
@@ -107,6 +127,7 @@ class FinishedProfileViewController: UIViewController {
             }
         })
     }
+    
     
 
 }

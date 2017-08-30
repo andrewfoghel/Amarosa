@@ -26,13 +26,23 @@ class RootViewController: UIPageViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         
         
-        
         self.dataSource = self
         
         self.setViewControllers([viewControllerList[1]], direction: .forward, animated: true, completion: nil)
         
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handlePagination), userInfo: nil, repeats: true)
+    }
+    
+    func handlePagination(){
+        if isDrawable == false{
+            self.dataSource = self
+        }else{
+            self.dataSource = nil
+        }
         
     }
+    
+    
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         

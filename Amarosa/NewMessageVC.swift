@@ -29,6 +29,9 @@ class NewMessageVC: UIViewController,UITableViewDelegate,UITableViewDataSource,U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Back arrow"), style: .plain, target: self, action: #selector(dismissNewMessage))
+       // navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+        
         searchBar.delegate = self
         myTableView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         
@@ -36,8 +39,36 @@ class NewMessageVC: UIViewController,UITableViewDelegate,UITableViewDataSource,U
         
     }
     
+    func dismissNewMessage(){
+    }
+    
     func fetchUser(){
-        Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
+        
+        guard let uid = Auth.auth().currentUser?.uid else{
+            return
+        }
+        
+        Database.database().reference().child("friends").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            self.users.removeAll()
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshot{
+                    Database.database().reference().child("users").child(snap.key).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let dictionary = snapshot.value as? [String:AnyObject]{
+                            let user = User()
+                            user.uid = snapshot.key
+                            user.name = dictionary["name"] as? String
+                            user.email = dictionary["email"] as? String
+                            self.users.append(user)
+                            DispatchQueue.main.async {
+                                self.myTableView.reloadData()
+                            }
+                        }
+                    })
+                }
+            }
+        })
+        
+       /* Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let user = User()
@@ -55,7 +86,7 @@ class NewMessageVC: UIViewController,UITableViewDelegate,UITableViewDataSource,U
             }
             
             
-        })
+        })*/
     }
     
     

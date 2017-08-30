@@ -556,7 +556,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 		connection.videoOrientation = previewLayer.connection.videoOrientation;
 
 		// Flash set to Auto for Still Capture.
-		[AAPLCameraViewController setFlashMode:AVCaptureFlashModeAuto forDevice:self.videoDeviceInput.device];
+		[AAPLCameraViewController setFlashMode:AVCaptureFlashModeOff forDevice:self.videoDeviceInput.device];
 
 		// Capture a still image.
 		[self.stillImageOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^( CMSampleBufferRef imageDataSampleBuffer, NSError *error ) {

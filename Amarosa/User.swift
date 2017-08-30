@@ -9,6 +9,7 @@
 
 import UIKit
 
+
 class User: NSObject{
     var name: String?
     var email: String?
@@ -16,4 +17,6 @@ class User: NSObject{
     var gender: String?
     var birthday: AnyObject?
     var profileImageUrl: String?
+    var loverStoryID: String?
+    
 }

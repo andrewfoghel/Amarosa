@@ -14,8 +14,13 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     //Variables
     let faceLoginButton = FBSDKLoginButton()
-
     
+    
+    @IBOutlet weak var forgotBtn: UIButton!
+    @IBOutlet weak var createAccountImage: UIImageView!
+    
+    @IBOutlet weak var termsLbl: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     //Outlets
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
@@ -38,7 +43,19 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
                 }
                 print("successful login to firebase")
                     //performSegue() to cameraVC
-                self.performSegue(withIdentifier: "camera", sender: nil)
+                
+                Database.database().reference().child("users").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String:AnyObject]{
+                        let lovePageId = dictionary["lovePage"]
+                        if lovePageId == nil{
+                            self.performSegue(withIdentifier: "camera", sender: nil)
+                        }else{
+                            self.performSegue(withIdentifier: "camera1", sender: nil)
+
+                        }
+                    }
+                })
+                
             }
         }
         
@@ -48,11 +65,11 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
         //get access to the fb with the login button
         
         let width = self.view.frame.size.width
-        view.addSubview(faceLoginButton)
+        scrollView.addSubview(faceLoginButton)
 
         /*faceLoginButton.frame = CGRect(x: signInBtn.frame.origin.x, y: signInBtn.frame.origin.y + width/5.33,width: signInBtn.frame.size.width, height: signInBtn.frame.size.height)*/
         faceLoginButton.frame = CGRect(x: width, y: signInBtn.frame.origin.y + width/5.33,width: signInBtn.frame.size.width, height: signInBtn.frame.size.height)
-        faceLoginButton.layer.cornerRadius = 20
+        faceLoginButton.layer.cornerRadius = faceLoginButton.frame.size.height/2
         faceLoginButton.layer.masksToBounds = true
         faceLoginButton.delegate = self
         
@@ -79,7 +96,7 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
             print("Successfully logged in with facebook")
             //initialze a facebook grab request
             showEmail()
-            performSegue(withIdentifier: "camera", sender: nil)
+            
         }
     }
     
@@ -134,7 +151,7 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
                                             }
                                             if let facebookImageUrl = metadata?.downloadURL()?.absoluteString{
                                                 let values:[String:AnyObject] = ["name":user?.displayName as AnyObject,"email":user?.email as AnyObject,"profileImageUrl":facebookImageUrl as AnyObject,"birthday":836188340 as AnyObject,"gender":"" as AnyObject]
-                                                userRef.setValue(values)
+                                                userRef.updateChildValues(values)
                                             }
                                         })
                                         
@@ -150,6 +167,16 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
                 
             }
 
+            Database.database().reference().child("users").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String:AnyObject]{
+                    let lovePageId = dictionary["lovePage"]
+                    if lovePageId == nil{
+                        self.performSegue(withIdentifier: "camera", sender: nil)
+                    }else{
+                        self.performSegue(withIdentifier: "camera1", sender: nil)
+                    }
+                }
+            })
             print("successfully logged into fire base", user ?? "")
         })
         
@@ -168,18 +195,69 @@ class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupUI()
         setupFacebookBtn()
         
     }
     
+    var scrollViewHeight: CGFloat = 0
+     var keyboard = CGRect()
     
+    func setupUI(){
+        view.backgroundColor = UIColor(red: 0.99, green: 0.56, blue: 0.28, alpha: 1)
+        
+        scrollView.frame = view.frame
+        scrollView.contentSize.height = view.frame.size.height
+        scrollViewHeight = scrollView.frame.size.height
+        scrollView.alwaysBounceVertical = false
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap))
+        hideTap.numberOfTapsRequired = 1
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(hideTap)
+        
+        amarosaLbl.frame = CGRect(x: view.frame.midX - width/4, y: width/3, width: width/2, height: width/16)
+        
+        emailTxt.frame = CGRect(x: width/8, y: amarosaLbl.frame.origin.y + amarosaLbl.frame.height + width/3.2, width: width - width/4, height: width/10.67)
+        
+        passwordTxt.frame = CGRect(x: width/8, y: emailTxt.frame.origin.y + emailTxt.frame.height + width/32, width: width - width/4, height: width/10.67)
+        
+        forgotBtn.frame = CGRect(x: passwordTxt.frame.origin.x + passwordTxt.frame.size.width + width/64, y: passwordTxt.frame.origin.y + width/106.67, width: width/12.8, height: width/12.8)
+        
+        signInBtn.frame = CGRect(x: width/10, y: passwordTxt.frame.origin.y + passwordTxt.frame.size.height + width/8, width: width - width/5, height: width/8)
+        
+        createBtn.frame = CGRect(x: width/10, y: signInBtn.frame.origin.y + 2*signInBtn.frame.size.height + width/5.33, width: width - width/5, height: width/8)
+        createBtn.layer.cornerRadius = createBtn.frame.size.height/2
+        createBtn.layer.masksToBounds = true
+        
+        termsLbl.frame = CGRect(x: 0, y: createBtn.frame.origin.y + createBtn.frame.height + width/12.8, width: width, height: width/21.33)
+       
+        createAccountImage.frame = CGRect(x: createBtn.frame.origin.x + width/16, y: createBtn.frame.origin.y + width/32, width: width/16, height: width/16)
+    }
+
     
+    func showKeyboard(_ notification:Notification){
+        keyboard = ((notification.userInfo?[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue)!
+        
+        // move up UI
+        UIView.animate(withDuration: 0.4, animations: { () -> Void in
+            self.scrollView.frame.size.height = self.scrollViewHeight - self.keyboard.height
+        })
+    }
     
+    func hideKeyboard(_ recoginizer:UITapGestureRecognizer){
+        UIView.animate(withDuration: 0.4, animations: { () -> Void in
+            self.scrollView.frame.size.height = self.view.frame.height
+        })
+    }
     
-    
-    
-    
+    func hideKeyboardTap(_ recoginizer:UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
     
     
     
